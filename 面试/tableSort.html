@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<table id="data">
+  <thead>
+  <tr>
+    <th class="date">日期</th>
+    <th class="total">总次数</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>2017年10月23日</td>
+    <td>68,112</td>
+  </tr>
+  <tr>
+    <td>2017年8月6日</td>
+    <td>68,020</td>
+  </tr>
+  <tr>
+    <td>2017年11月11日</td>
+    <td>69,433</td>
+  </tr>
+  <tr>
+    <td>2016年5月12日</td>
+    <td>69,699</td>
+  </tr>
+  <tr>
+    <td>2017年1月18日</td>
+    <td>42,565</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+<script>
+  // 如下表格，点击 `#data .date` 后使表格按日期排序，当前是正序则改为倒序，当前是倒序则改为正序，要求以原生 JavaScript 实现。
+  const dateTh = document.getElementsByClassName('date')[0]
+  const tbody = document.getElementsByTagName('tbody')[0]
+  let trCollections = tbody.getElementsByTagName('tr')
+  let trArray = Array.from(trCollections)
+  let order = false // false
+  dateTh.onclick = function () {
+    trArray.sort((a, b)=>{
+      let [aDate, bDate] = [a.children[0].innerHTML, b.children[0].innerHTML]
+      return (toDate(aDate) - toDate(bDate)) * (order ? 1: -1)
+    })
+    tbody.innerHTML = null
+    trArray.forEach(tr=>{
+      tbody.appendChild(tr)
+    })
+    order = !order
+  }
+  function toDate(str) {
+    const dateString = str.replace('年', '-').replace('月', '-').replace('日', '')
+    return new Date(dateString)
+  }
+</script>
+</html>

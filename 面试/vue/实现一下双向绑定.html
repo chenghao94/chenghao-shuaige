@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+ <input id="input" type="text" oninput="change()">
+ <div id="text"></div>
+</body>
+<script>
+  let obj = {
+    text: '123',
+  }
+  let val
+  Object.defineProperty(obj, 'text', {
+    enumerable: true,
+    configurable: true,
+    get() {
+      console.log('get')
+      return val
+    },
+    set(newValue) {
+      console.log('set')
+      document.getElementById('text').innerText = newValue
+      val = newValue
+    }
+  })
+  function change() {
+    obj.text = window.event.target.value
+    console.log('obj.text', obj.text)
+  }
+</script>
+</html>

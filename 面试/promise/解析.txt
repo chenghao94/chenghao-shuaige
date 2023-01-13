@@ -1,0 +1,12 @@
+注意：要在浏览器里面执行
+w：promise2
+h：setTimeout3   setTimeout2  setTimeout1
+
+script start
+async1 start
+promise1
+script end
+promise2
+setTimeout3
+setTimeout2
+setTimeout1

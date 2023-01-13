@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button id="btn">add</button>
+</body>
+<script>
+  window.onload = function () {
+    var tree222;
+    function create() {
+      console.log('click')
+      var ul = document.createElement('ul')
+      for (let i=0;i<1000;i++){
+        let li = document.createElement('li')
+        ul.appendChild(li)
+      }
+      tree222 = ul
+    }
+
+    document.getElementById('btn').addEventListener('click', create, false)
+  }
+</script>
+</html>

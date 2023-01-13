@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>111111</h1>
+<button>change</button>
+</body>
+<script>
+  var h1 = document.querySelector('h1')
+  var btn = document.querySelector('button')
+  function delay(time) {
+    const now = new Date()
+    while (Date.now() - now < time) {}
+  }
+  setTimeout(()=>{
+    console.log(111)
+  }, 1000)
+  delay(3000)
+  btn.addEventListener('click', function () {
+    h1.textContent = '22222'   // 这句话代码产生一个绘制任务 放在消息队列里面，并不是立刻绘制
+    delay(3000)
+  })
+</script>
+</html>

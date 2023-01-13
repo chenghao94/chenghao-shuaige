@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .content {
+      margin-left: 200px;
+      background-color: aliceblue;
+      border: solid 2px black;
+      display: flex;
+      width: 1000px;
+      height: 600px;
+    }
+    #left {
+      background-color: aqua;
+      width: 500px;
+    }
+    #divide {
+      height: 100%;
+      width: 3px;
+      background-color: chocolate;
+      cursor: col-resize;
+    }
+    #right {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+     <div id="left"></div>
+     <div id="divide" onmousedown="handleMousedown()"></div>
+     <div id="right"></div>
+  </div>
+</body>
+<script>
+  let left = document.getElementById('left')
+  let right = document.getElementById('right')
+  let moving = false
+  function handleMousedown() {
+    moving = true
+    let currentX = window.event.clientX
+    let leftWidth = left.getBoundingClientRect().width
+    let rightWidth = right.getBoundingClientRect().width
+    document.onmousemove = e => {
+      if (!moving) return
+      console.log('leftWidth + e.clientX - currentX', leftWidth + e.clientX - currentX)
+      left.style.width = `${leftWidth + e.clientX - currentX}px`
+      right.style.width = `${rightWidth - e.clientX + currentX}px`
+    }
+    document.onmouseup = () => {
+      moving = false
+    }
+  }
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图片懒加载实现思想</title>
+</head>
+<body>
+<div>
+  <img src="" lazyload data-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3238782446,3282889&fm=26&gp=0.jpg">
+  <img src="" lazyload data-src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=47987272,1182725191&fm=26&gp=0.jpg">
+  <img src="" lazyload data-src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2036737374,514612751&fm=26&gp=0.jpg">
+  <img src="" lazyload data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1687179290,3353239986&fm=26&gp=0.jpg">
+</div>
+</body>
+<script>
+var viewheight = document.documentElement.clientHeight   //可视区域高度
+
+function lazyload(){
+  var eles = document.querySelectorAll('img[data-src][lazyload]')
+  
+  Array.prototype.forEach.call(eles,function(item,index){
+    var rect;
+    if(item.dataset.original === '') return;
+    rect = item.getBoundingClientRect(); //返回元素的大小及其相对于视口的
+    
+    if(rect.bottom >= 0 && rect.top < viewheight){
+      !function(){
+        var img = new Image();
+        img.src = item.dataset.url;
+        img.onload = function(){
+          item.src = img.src
+        }
+        item.removeAttribute('data-original');
+        item.removeAttribute('data-src');
+      }()
+    }
+  })
+}
+
+lazyload()
+document.addEventListener('scroll',lazyload)
+</script>
+</html>

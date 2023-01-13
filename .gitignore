@@ -1,0 +1,6 @@
+# Editor directories and files
+.idea
+
+# 项目相关
+node_modules/
+dist/

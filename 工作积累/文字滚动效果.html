@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文字滚动效果</title>
+  <style>
+    .content {
+	    width: 100px;
+	    height: 200px;
+	    background-color: aqua;
+	    overflow: hidden;
+    }
+
+    p {
+      min-width: 100px;
+	    width: fit-content;
+	    word-break: keep-all;
+	    animation: move 3s linear infinite;
+    }
+
+    @keyframes move {
+	    0%, 20% {
+		    transform: translateX(0px);
+	    }
+	    80%, 100% {
+		    transform: translateX(calc(-100% + 100px));
+	    }
+    }
+  </style>
+</head>
+<body>
+<div class="content">
+  <p>我是文字</p>
+  <p>我是一段很长很长很长很长很长的文字</p>
+  <p>我是一段很长很长很长很长很长很长很长很长很长很长的文字</p>
+</div>
+</body>
+</html>
